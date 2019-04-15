@@ -1,0 +1,34 @@
+<pre>{{ loginForm | json }}</pre>
+
+<form #form="ngForm">
+  <div>
+    <label for="user">Usuário</label>
+    <input id="user"
+      type="text"
+      [(ngModel)]="loginForm.user"
+      name="user"
+      #user="ngModel"
+      required
+    />
+
+    <div *ngIf="user.invalid && user.touched">ERRO!!!</div>
+  </div>
+
+  <div>
+    <label for="password ">Senha</label>
+    <input id="password "
+      type="password"
+      [(ngModel)]="loginForm.password"
+      name="password"
+      #password="ngModel"
+      required
+    />
+
+    <div *ngIf="password.invalid && password.touched">ERRO!!!</div>
+  </div>
+</form>
+
+<button [disabled]="form.invalid" (click)="send()">
+  Enviar
+</button>
+

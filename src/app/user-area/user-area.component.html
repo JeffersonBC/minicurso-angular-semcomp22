@@ -1,0 +1,33 @@
+<div>Age: {{ ageValue }}</div>
+
+<form [formGroup]="userInfo">
+  <div>
+    <label for="name">Nome</label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="age">Idade</label>
+    <input id="age" type="tel" formControlName="age">
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email">
+
+
+    <ng-container *ngIf="userInfo.controls.email.errors">
+      <div *ngIf="userInfo.controls.email.errors['email']">Email inválido</div>
+      <div *ngIf="userInfo.controls.email.errors['required']">Campo obrigatório</div>
+    </ng-container>
+
+  </div>
+</form>
+
+<button class="btn btn-primary" [disabled]="userInfo.invalid" (click)="send()">
+  Enviar
+</button>
+
+<div *ngIf="loading">
+  Carregando
+</div>
